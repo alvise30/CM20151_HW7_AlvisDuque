@@ -13,7 +13,7 @@ for (i in 2:length(date)) {
   tmp <- strptime(date[i], format="%Y.%m.%d_%H:%M:%S")-strptime(date[i-1], format="%Y.%m.%d_%H:%M:%S")
   x <- c(x,tmp)
 }
-#x <- c(x,45.0)
+x <- c(x,45.0)
 #Escribimos un .txt para guardar los datos
 fout<-file("intervalos.txt")
 write(x, fout, sep = '\n')
