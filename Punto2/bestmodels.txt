@@ -1,0 +1,13 @@
+Observación	Modelo	Mejor Ajuste	Parámetro
+Obser_0_0	Lineal	4.04002123611	a
+Obser_0_0	Lineal	-16.9147941519	b
+Obser_0_0	Lineal	680.3666784	Likelihood
+Obser_0_1	Lineal	2.71174920045	a
+Obser_0_1	Lineal	-11.6581865511	b
+Obser_0_1	Lineal	466.358826569	Likelihood
+Obser_1_0	Lineal	3.76537003703	a
+Obser_1_0	Lineal	-16.4654075157	b
+Obser_1_0	Lineal	809.205166341	Likelihood
+Obser_1_1	Lineal	2.86917894048	a
+Obser_1_1	Lineal	-11.7496030927	b
+Obser_1_1	Lineal	820.642763609	Likelihood

@@ -11,3 +11,12 @@ Obser_1_0	809.205166341	Likelihood
 Obser_1_1	2.86917894048	a
 Obser_1_1	-11.7496030927	b
 Obser_1_1	820.642763609	Likelihood
+Obser_0_0	Lineal	4.04002123611	a
+Obser_0_0	Lineal	-16.9147941519	b
+Obser_0_0	Lineal	680.3666784	Likelihood
+Obser_0_0	Lineal	4.04002123611	a
+Obser_0_0	Lineal	-16.9147941519	b
+Obser_0_0	Lineal	680.3666784	Likelihood
+Obser_0_0	Lineal	4.04002123611	a
+Obser_0_0	Lineal	-16.9147941519	b
+Obser_0_0	Lineal	680.3666784	Likelihood
