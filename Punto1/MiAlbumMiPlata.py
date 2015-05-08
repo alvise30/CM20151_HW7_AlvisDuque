@@ -58,17 +58,18 @@ print(Var_x)
 print("--- El programa se demora en correr %s segundos. Tener paciencia por favor.Gracias ---" % (time.time() - start_time))
 
 
-# pl.plot(paso, E_x, color="blue", linewidth=2.5, linestyle="-", label="Media")
-# pl.plot(paso, Var_x, color="red", linewidth=2.5, linestyle="-", label="Varianza")
-# pl.show()
-fig1,ax1 = pl.subplots()
-ax1.plot(paso,E_x,'b')
-ax1.set_ylabel('Promedio $',color='b')
+pl.subplot(2, 1, 1)
+pl.plot(paso,E_x,'b')
+pl.title('Promedio y varianza de los precios \n de llenar el album m veces')
+pl.ylabel('Promedio')
 
-ax2 = ax1.twinx()
-ax2.plot(paso,Var_x,'r')
-ax2.set_ylabel('Varianza',color='r')
+pl.subplot(2, 1, 2)
+pl.plot(paso,Var_x,'r')
+pl.xlabel('Numero de veces que se llena el Album (m)')
+pl.ylabel('Varianza')
+pl.savefig('PromediosMSinProba.png')
 pl.show()
+
 
 #SEGUNDO PUNTO
 #El enunciado es un poco confuso acerca de que es lo que se debe hallar, así que se promediaron los precios promedios
@@ -82,11 +83,18 @@ mini = np.min(dif)
 itemindex = np.where(dif==mini)
 int1= itemindex[0]
 mbuscado= (int1[0] +1)*10
-print(mbuscado)
-nProme = LlenarMAlbums(caramelos,llenarAlbum, mbuscado)
+print('El m buscado es entonces %s ' %mbuscado)
+PromeBuscado = LlenarMAlbums(caramelos,llenarAlbum, mbuscado)[0]
+
+print('Dado a que esto es un proceso bastante aleatorio pues entre caso y caso varia considerablemente\n como se puede ver en la varianza y en las diferencias. ')
+print('Según esto es dificil sacar un valor fijo del album pues es algo bastante aleatorio. Sin embargo haciendo el caso con el mbuscado')
+print('Encontramos que en el mejor caso del precio es %s sin embargo esto es un promedio de los casos que se llena el album  ' %PromeBuscado )
+
+
 
 pl.plot(paso, dif, color="DarkOliveGreen", linewidth=2.5, linestyle="-", label="Media")
 pl.ylabel('Diferencia de las medias')
 pl.xlabel('Numero de veces que se llena el album (m)')
 pl.title('Grafica de la diferencia entre los premedios\n en funcion de los albums llenados')
+pl.savefig('DiferenciaMSinProba.png')
 pl.show()
