@@ -38,7 +38,7 @@ def prep_time(times):
 
 #Funcion para desplazarse por el arreglo de datos para graficar
 def comprobar(i, j, lentotal):
-    if j+1/lentotal == 1:
+    if j == 9:
         i+=1
         j=0
     else:
@@ -123,7 +123,7 @@ times = timesfile['Intervalo']
 hdulist.close()
 
 #Cargamos los datos y definimos x_obs y y_obs
-y_obs = data[:,138:140,241:243]
+y_obs = data[:,138:148,241:251]
 x_obs = prep_time(times)
 
 #Graficar

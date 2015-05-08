@@ -100,7 +100,7 @@ hdulist.close()
 
 #Cargamos los datos y definimos x_obs y y_obs
 ztimes = prep_time(times) #Preparamos los tiempos
-y_obs = data[:,138:140,241:243]
+y_obs = data[:,138:148,241:251]
 x_obs = ztimes
 
 #Likelihood
