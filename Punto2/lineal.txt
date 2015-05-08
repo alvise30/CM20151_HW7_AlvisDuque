@@ -1,13 +1,13 @@
 Observacion	Mejor Ajuste	Parametro
-Obser_0_0	4.03946708263	a
-Obser_0_0	-16.9119445013	b
-Obser_0_0	680.366849512	Likelihood
-Obser_0_1	2.70946598762	a
-Obser_0_1	-11.6520734528	b
-Obser_0_1	466.358879833	Likelihood
-Obser_1_0	3.76495622501	a
-Obser_1_0	-16.464168	b
-Obser_1_0	809.205238811	Likelihood
-Obser_1_1	2.86871796134	a
-Obser_1_1	-11.7494234099	b
-Obser_1_1	820.642972763	Likelihood
+Obser_0_0	4.03834004626	a
+Obser_0_0	-16.9095900531	b
+Obser_0_0	680.366758601	Likelihood
+Obser_0_1	2.7127961717	a
+Obser_0_1	-11.6664379501	b
+Obser_0_1	466.359110385	Likelihood
+Obser_1_0	3.76628958113	a
+Obser_1_0	-16.4691036887	b
+Obser_1_0	809.205428789	Likelihood
+Obser_1_1	2.86857846514	a
+Obser_1_1	-11.7478564424	b
+Obser_1_1	820.642762125	Likelihood
