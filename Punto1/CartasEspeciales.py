@@ -7,14 +7,18 @@ import pylab as pl
 #En primera instancia creamos una matriz de 640 caramelos 
 size = 640 
 caramelos = np.zeros(size)
-
+probabilidades = np.zeros(size)
 #Ahora en cada posicion del arreglo se ubica una carta diferente. 
 for i in range(0,len(caramelos)):
 	caramelos[i] = i
 
-# for i in range(0,640):
-# 	PlataGastada = PlataGastada +400	##Con este algoritmo se queria ver cuanto se gastaria si cada carta solo 
-# print(PlataGastada)					##apareciera una vez. El precio seria de 256000 COP
+for i in range(0,560):
+	probabilidades[i] = 0.5
+for i in range(560,600):
+	probabilidades[i] = 1.0/6.0
+for i in range(600,640):
+	probabilidades[i] = 1.0/3.0
+
 
 def llenarAlbum(caramelos):
 	PlataGastada = 0
@@ -22,7 +26,7 @@ def llenarAlbum(caramelos):
 	repetidas = []
 	while len(miAlbum) < 640:
 		PlataGastada = PlataGastada + 400 #El precio por cada caramelo es de 400 COP segun el enunciado
-		item = random.choice(caramelos)
+		item = random.choice(caramelos, p= probabilidades)
 		if item in miAlbum:
 			repetidas.append(item) #Aqui se guardan las repetidas. Just in case... 
 		else:
@@ -67,14 +71,8 @@ ax1.set_ylabel('Promedio $',color='b')
 
 ax2 = ax1.twinx()
 ax2.plot(paso,Var_x,'r')
-ax2.set_ylabel('Varianza',color='r')
+ax2.set_ylabel('Varianza $',color='r')
 pl.show()
-
-#SEGUNDO PUNTO
-#El enunciado es un poco confuso acerca de que es lo que se debe hallar, así que se promediaron los precios promedios
-#de cada vez que se llena un album M veces. A cada media se le resto ese numero y se le saco valor absoluto.
-#Para hallar el mejor m, (dado que en ningún caso la resta dio menos a 10^⁻6) se busco el caso en que el valor fuera
-#minimo, se hallo la posición de este valor y se le sumo 1 y multiplico por 10, pues nuestro primer m = 10. 
 
 E_x_m = np.mean(E_x)
 dif = np.abs(E_x - E_x_m)
