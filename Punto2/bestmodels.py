@@ -53,12 +53,12 @@ llh_paso = ext_llh(paso)
 #Comparamos los likelihoods entre ellos para saber cual es el mejor ajuste a los datos en cada una de las situaciones
 tmp=[]
 for i in range(len(llh_lin)):
-    if llh_lin[i] >= llh_gauss[i]:
-        if llh_lin[i] >= llh_paso[i]:
+    if abs(llh_paso[i]) >= abs(llh_lin[i]):
+        if abs(llh_gauss[i]) >= (llh_lin[i]):
             tmp.append(1)
         else:
-            tmp.append(3)
-    elif llh_gauss[i] >= llh_paso[i]:
+            tmp.append(2)
+    elif abs(llh_gauss[i]) <= abs(llh_paso[i]):
         tmp.append(2)
     else:
         tmp.append(3)
@@ -87,12 +87,12 @@ for i in range(len(llh_lin)):
                
     elif element == 3: #Comprobar si es lineal Paso
         fileout = open('bestmodels.txt', 'a')            
-        fileout.write(str(lin.iloc[(i*6)+0,0])+ '\tL_P\t' + str(lin.iloc[(i*6)+0,1]) + '\t' + str(lin.iloc[(i*6)+0,2]) + '\n' + 
-                        str(lin.iloc[(i*6)+1,0])+ '\tL_P\t' + str(lin.iloc[(i*6)+1,1]) + '\t' + str(lin.iloc[(i*6)+1,2]) + '\n' +
-                        str(lin.iloc[(i*6)+2,0])+ '\tL_P\t' + str(lin.iloc[(i*6)+2,1]) + '\t' + str(lin.iloc[(i*6)+2,2]) + '\n' +
-                        str(lin.iloc[(i*6)+3,0])+ '\tL_P\t' + str(lin.iloc[(i*6)+3,1]) + '\t' + str(lin.iloc[(i*6)+3,2]) + '\n' +
-                        str(lin.iloc[(i*6)+4,0])+ '\tL_P\t' + str(lin.iloc[(i*6)+4,1]) + '\t' + str(lin.iloc[(i*6)+4,2]) + '\n' +
-                        str(lin.iloc[(i*6)+5,0])+ '\tL_P\t' + str(lin.iloc[(i*6)+5,1]) + '\t' + str(lin.iloc[(i*6)+5,2]) + '\n')
+        fileout.write(str(paso.iloc[(i*6)+0,0])+ '\tL_P\t' + str(paso.iloc[(i*6)+0,1]) + '\t' + str(paso.iloc[(i*6)+0,2]) + '\n' + 
+                        str(paso.iloc[(i*6)+1,0])+ '\tL_P\t' + str(paso.iloc[(i*6)+1,1]) + '\t' + str(paso.iloc[(i*6)+1,2]) + '\n' +
+                        str(paso.iloc[(i*6)+2,0])+ '\tL_P\t' + str(paso.iloc[(i*6)+2,1]) + '\t' + str(paso.iloc[(i*6)+2,2]) + '\n' +
+                        str(paso.iloc[(i*6)+3,0])+ '\tL_P\t' + str(paso.iloc[(i*6)+3,1]) + '\t' + str(paso.iloc[(i*6)+3,2]) + '\n' +
+                        str(paso.iloc[(i*6)+4,0])+ '\tL_P\t' + str(paso.iloc[(i*6)+4,1]) + '\t' + str(paso.iloc[(i*6)+4,2]) + '\n' +
+                        str(paso.iloc[(i*6)+5,0])+ '\tL_P\t' + str(paso.iloc[(i*6)+5,1]) + '\t' + str(paso.iloc[(i*6)+5,2]) + '\n')
         fileout.close() 
 
 #Modelos
@@ -144,7 +144,7 @@ for element in tmp:
              +str(bestm.iloc[k+2,2]), fontsize=12)
         text(0,0, r'$at+b$', fontsize=24)
         savefig(u'Observacion_'+str(i)+'_'+str(j)+'.pdf')
-        show()
+        close()
         k+=3        
         print 'lineal',i,j
     elif element == 2:
@@ -160,22 +160,23 @@ for element in tmp:
              '\nd= '+str(bestm.iloc[k+3,2]) + '\nLikelihood= ' +str(bestm.iloc[k+4,2]), fontsize=12)
         text(-0.5,5, r'$a+bt+\frac{1}{c\sqrt{\pi}}e^{-\frac{1}{2}[\frac{t-d}{c}]^2}$', fontsize=24)
         savefig(u'Observacion_'+str(i)+'_'+str(j)+'.pdf')
-        show()
+        close()
         k+=5                
         print 'gauss',i,j
     elif element == 3:
         #figsize(8,5.5)
         best_y = linear_paso_model(x_obs, bestm.iloc[k+0,2], bestm.iloc[k+1,2], bestm.iloc[k+2,2], bestm.iloc[k+3,2], bestm.iloc[k+4,2])
-        scatter(x_obs,y_obs[:,i,j])
-        plot(x_obs, best_y, 'g')
+        scatter(x_obs,y_obs[:,i,j], color = 'grey', label = (u'Observacion'))
+        plot(x_obs, best_y, 'g', label = (u'Ajuste Lineal Paso'))
+        legend(loc=2, fontsize=12)
         xlabel(r'$Tiempo\ [horas]$', fontsize=16)
         ylabel(r'$Campo\ Magn\'etico\ [Gauss]$', fontsize=16)
         title(u'Observacion_' +str(i)+ '_' +str(j), fontsize=24)
         text(4.5,-15, 'a= '+str(bestm.iloc[k+0,2]) + '\nb= '+str(bestm.iloc[k+1,2]) + '\nc= '+str(bestm.iloc[k+2,2]) + 
              '\nd= '+str(bestm.iloc[k+3,2]) + '\ne= '+str(bestm.iloc[k+4,2]) + '\nLikelihood= ' +str(bestm.iloc[k+5,2]), fontsize=12)
-        text(-0.5,5, r'$a+bt+c{1+\frac{2}{\pi}tan^{-1}[d(t-e)]}$', fontsize=24)
+        text(-0.5,5, r'$a+bt+c[1+\frac{2}{\pi}arctan(d(t-e))]$', fontsize=20)
         savefig(u'Observacion_'+str(i)+'_'+str(j)+'.pdf')
-        show()
+        close()        
         k+=6        
         print 'paso',i,j
         
