@@ -1,4 +1,4 @@
-Observacion	Modelo	Mejor Ajuste	Parametro
+Observación	Modelo	Mejor Ajuste	Parámetro
 Obser_0_0	L_P	-17.7490357511	a
 Obser_0_0	L_P	2.67232487321	b
 Obser_0_0	L_P	3.90838141549	c
