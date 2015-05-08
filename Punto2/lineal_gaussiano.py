@@ -33,10 +33,10 @@ def inicializar(x_obs, y_obs,i,j):
 
     #randrange(start, stop[, step])
 
-    a_walk = append(a_walk, 100) #ATENCION!! Mirar que tipo de generador de nuemeros aleatoreas debe usarse
-    b_walk = append(b_walk, 0.5)
-    c_walk = append(c_walk, 40)
-    d_walk = append(d_walk, 100)    
+    a_walk = append(a_walk, -10) #ATENCION!! Mirar que tipo de generador de nuemeros aleatoreas debe usarse
+    b_walk = append(b_walk, 2.5)
+    c_walk = append(c_walk, -0.04)
+    d_walk = append(d_walk, 1)    
 
     y_init = linear_gauss_model(x_obs, a_walk[0], b_walk[0], c_walk[0], d_walk[0])
     l_walk = append(l_walk,likelihood(y_obs[:,i,j], y_init))
@@ -47,10 +47,10 @@ def iteraciones(a_walk, b_walk, c_walk, d_walk, l_walk,  i, j):
     
     n_iterations = 20000 #this is the number of iterations I want to make
     for k in range(n_iterations):
-        a_prime = np.random.normal(a_walk[k], 0.1) 
+        a_prime = np.random.normal(a_walk[k], 1) 
         b_prime = np.random.normal(b_walk[k], 0.1)
-        c_prime = np.random.normal(c_walk[k], 0.1)
-        d_prime = np.random.normal(d_walk[k], 0.1)        
+        c_prime = np.random.normal(c_walk[k], 0.005)
+        d_prime = np.random.normal(d_walk[k], 0.3)        
 
         y_init = linear_gauss_model(x_obs, a_walk[k], b_walk[k], c_walk[k], d_walk[k])
         y_prime = linear_gauss_model(x_obs, a_prime, b_prime, c_prime, d_prime)
@@ -67,7 +67,7 @@ def iteraciones(a_walk, b_walk, c_walk, d_walk, l_walk,  i, j):
             l_walk = append(l_walk, l_prime)
         else:
             beta = np.random.random()
-            if(beta<=exp(alpha)):
+            if(beta<=alpha):
                 a_walk = append(a_walk,a_prime)
                 b_walk = append(b_walk,b_prime)
                 c_walk = append(c_walk,c_prime)

@@ -34,10 +34,10 @@ def inicializar(x_obs, y_obs,i,j):
     #randrange(start, stop[, step])
 
     a_walk = append(a_walk, (200*(np.random.random()-0.5))) #ATENCION!! Mirar que tipo de generador de nuemeros aleatoreas debe usarse
-    b_walk = append(b_walk, (1*(np.random.random()-0.5)))
-    c_walk = append(b_walk, (100*(np.random.random()-0.5)))
-    d_walk = append(b_walk, (100*np.random.random()))
-    e_walk = append(b_walk, (270*np.random.random()+80))
+    b_walk = append(b_walk, -16)
+    c_walk = append(c_walk, 2.5)
+    d_walk = append(d_walk, 3.0)
+    e_walk = append(e_walk, 3.4)
 
     y_init = linear_paso_model(x_obs, a_walk[0], b_walk[0], c_walk[0], d_walk[0], e_walk[0])
     l_walk = append(l_walk,likelihood(y_obs[:,i,j], y_init))
@@ -47,10 +47,10 @@ def iteraciones(a_walk, b_walk, c_walk, d_walk, e_walk, l_walk,  i, j):
     
     n_iterations = 20000 #this is the number of iterations I want to make
     for k in range(n_iterations):
-        a_prime = np.random.normal(a_walk[k], 0.1) 
-        b_prime = np.random.normal(b_walk[k], 0.1)
-        c_prime = np.random.normal(c_walk[k], 0.1)
-        d_prime = np.random.normal(d_walk[k], 0.1)
+        a_prime = np.random.normal(a_walk[k], 0.5) 
+        b_prime = np.random.normal(b_walk[k], 0.3)
+        c_prime = np.random.normal(c_walk[k], 0.2)
+        d_prime = np.random.normal(d_walk[k], 0.3)
         e_prime = np.random.normal(e_walk[k], 0.1)
 
         y_init = linear_paso_model(x_obs, a_walk[k], b_walk[k], c_walk[k], d_walk[k], e_walk[k])
@@ -69,7 +69,7 @@ def iteraciones(a_walk, b_walk, c_walk, d_walk, e_walk, l_walk,  i, j):
             l_walk = append(l_walk, l_prime)
         else:
             beta = np.random.random()
-            if(beta<=exp(alpha)):
+            if(beta<=alpha):
                 a_walk = append(a_walk,a_prime)
                 b_walk = append(b_walk,b_prime)
                 c_walk = append(c_walk,c_prime)
