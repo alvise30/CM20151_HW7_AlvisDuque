@@ -40,14 +40,17 @@ def LlenarMAlbums(caramelos, llenarAlbum, numAlbums):
 	sigma_m = np.var(X)
 	return  mu_m, sigma_m
 
-print(LlenarMAlbums(caramelos,llenarAlbum, 10))
+#print(LlenarMAlbums(caramelos,llenarAlbum, 10))
 #Ahora se sacan la variancia y la media de m= 10 : 10*10 : 10
 
 E_x= [] #Aqui se van a guardar todos las medias de cada vez que se llena el album
 Var_x= [] #Se guarda la Varianza de cada vez que se llena el album 
 start_time = time.time()
 paso= []
-#Ahora se hace un loop que llena el album 10000 veces, dado a que se quiere que el paso sea de 10 en 10. 
+
+#Esta es la parte complicada! 
+#Ahora se hace un loop que llena el album 100 veces, dado a que se quiere que el paso sea de 10 en 10. Esto para obtener
+#100 datos de cuantas veces se está llenando el album de 10 en 10. Es por esto que es tan demorado...  
 for i in range(1,100):
 	j = i*10
 	paso.append(j)
@@ -79,15 +82,15 @@ pl.show()
 
 E_x_m = np.mean(E_x)
 dif = np.abs(E_x - E_x_m)
-mini = np.min(dif)
+mini = np.min(dif) #Se saca el minimo de las diferencias, así este significa el error mas pequeño 
 itemindex = np.where(dif==mini)
 int1= itemindex[0]
 mbuscado= (int1[0] +1)*10 #La posicion empieza desde cero así que se le suma uno y se mltiplica por 10 y esta es la escala de los m 
 print('El m buscado es entonces %s ' %mbuscado)
 PromeBuscado = LlenarMAlbums(caramelos,llenarAlbum, mbuscado)[0]
 
-print('Dado a que esto es un proceso bastante aleatorio pues entre caso y caso varia considerablemente\n como se puede ver en la varianza y en las diferencias. ')
-print('Según esto es dificil sacar un valor fijo del album pues es algo bastante aleatorio. Sin embargo haciendo el caso con el mbuscado')
+print('Dado a que esto es un proceso bastante aleatorio pues entre caso y caso varia considerablemente como se puede ver en la varianza y en las diferencias. ')
+print('Según esto es dificil sacar un valor fijo del album pues es algo bastante aleatorio. Sin embargo haciendo el caso con el mbuscado %s' %mbuscado)
 print('Encontramos que en el mejor caso del precio es %s sin embargo esto es un promedio de los casos que se llena el album  ' %PromeBuscado )
 
 

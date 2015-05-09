@@ -13,11 +13,11 @@ for i in range(0,len(caramelos)):
 	caramelos[i] = i
 
 for i in range(0,560):
-	probabilidades[i] = 0.5
+	probabilidades[i] = (2.0/3.0)*(1.0/560)
 for i in range(560,600):
-	probabilidades[i] = 1.0/6.0
+	probabilidades[i] = (1.0/9.0)*(1.0/40)
 for i in range(600,640):
-	probabilidades[i] = 1.0/3.0
+	probabilidades[i] = (2.0/9.0)*(1.0/40)
 
 
 def llenarAlbum(caramelos):
