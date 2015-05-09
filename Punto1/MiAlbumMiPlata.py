@@ -40,7 +40,7 @@ def LlenarMAlbums(caramelos, llenarAlbum, numAlbums):
 	sigma_m = np.var(X)
 	return  mu_m, sigma_m
 
-#print(LlenarMAlbums(caramelos,llenarAlbum, 10))
+print(LlenarMAlbums(caramelos,llenarAlbum, 10))
 #Ahora se sacan la variancia y la media de m= 10 : 10*10 : 10
 
 E_x= [] #Aqui se van a guardar todos las medias de cada vez que se llena el album
@@ -82,7 +82,7 @@ dif = np.abs(E_x - E_x_m)
 mini = np.min(dif)
 itemindex = np.where(dif==mini)
 int1= itemindex[0]
-mbuscado= (int1[0] +1)*10
+mbuscado= (int1[0] +1)*10 #La posicion empieza desde cero así que se le suma uno y se mltiplica por 10 y esta es la escala de los m 
 print('El m buscado es entonces %s ' %mbuscado)
 PromeBuscado = LlenarMAlbums(caramelos,llenarAlbum, mbuscado)[0]
 
